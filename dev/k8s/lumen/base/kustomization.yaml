@@ -1,0 +1,8 @@
+namespace: ${NAMESPACE}
+resources:
+  - ./deployment.yaml
+  - ./service.yaml
+configMapGenerator:
+- name: ${NAME}-cnfgmp
+  files:
+  - ./config/nginx.conf

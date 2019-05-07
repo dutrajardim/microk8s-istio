@@ -1,0 +1,4 @@
+namespace: ${NAMESPACE}
+resources:
+- deployment.yaml
+- service.yaml

@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${NAME}-dplymnt
+spec:
+  template:
+    spec:
+      volumes:
+      - name: php-data
+        hostPath:
+          path: ${DIR}
+          type: Directory

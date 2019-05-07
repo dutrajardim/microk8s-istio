@@ -1,0 +1,16 @@
+namespace: ${NAMESPACE}
+bases:
+- ../../base
+patches:
+- deployment.yaml
+configMapGenerator:
+- name: ${NAME}-cnfgmp
+  literals:
+    - MARIADB_USER=abelhinha
+    - MARIADB_DATABASE=abelhinhas
+secretGenerator:
+- name: ${NAME}-scrt
+  type: Opaque
+  literals:
+    - MARIADB_ROOT_PASSWORD=devpass
+    - MARIADB_PASSWORD=devpass

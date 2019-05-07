@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${NAME}-dplymnt
+spec:
+  template:
+    spec:
+      initContainers:
+      - name: install
+        image: ${DOCKER_IMAGE}
+        volumeMounts:
+        - name: php-data
+          mountPath: /var/www/html
+        command: ["cp"]
+        args: ["-R","/app/.","/var/www/html"]
+      volumes:
+      - name: php-data
+        emptyDir: {}

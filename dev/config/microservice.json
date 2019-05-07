@@ -1,0 +1,9 @@
+{
+	"registry": "docker.io/",
+	"imageTag": "myapp/app",
+	"version": "0.0.1",
+	"k8s": {
+		"name": "myapp",
+		"replicas": 1
+	}
+}

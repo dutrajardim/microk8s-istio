@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${NAME}-dplymnt
+spec:
+  template:
+    spec:
+      containers:
+      - name: ${NAME}-cntnr
+        envFrom:
+          - configMapRef:
+              name: ${NAME}-cnfgmp
+          - secretRef:
+              name: ${NAME}-scrt

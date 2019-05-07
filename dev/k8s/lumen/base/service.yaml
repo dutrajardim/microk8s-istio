@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${NAME}-srvc
+  labels:
+    app: ${NAME}-srvc
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: ${NAME}-pd

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${NAME}-dplymnt
+  namespace: ${NAMESPACE}
+  labels:
+    app: ${NAME}-dplymnt
+spec:
+  template:
+    spec:
+      containers:
+      - name: ${NAME}-cntnr
+        volumeMounts:
+        - name: node-data
+          mountPath: /usr/src/app
+        command: ["npm"]
+        args: ["run","dev"]
+      volumes:
+      - name: node-data
+        hostPath:
+          path: ${DIR}
+          type: Directory

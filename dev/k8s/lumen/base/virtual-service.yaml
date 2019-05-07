@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ${NAME}-vrtlsrvc
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - ${NAMESPACE}-gtwy
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: ${NAME}-srvc
+        port:
+          number: 80

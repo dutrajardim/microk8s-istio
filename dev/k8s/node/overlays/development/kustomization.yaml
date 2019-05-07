@@ -1,0 +1,6 @@
+namespace: ${NAMESPACE}
+bases:
+- ../../base
+patches:
+- deployment.yaml
+- virtualservice.yaml

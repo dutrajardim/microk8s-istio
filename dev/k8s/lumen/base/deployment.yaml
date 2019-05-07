@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${NAME}-dplymnt
+  labels:
+    app: ${NAME}-dplymnt
+  namespace: ${NAMESPACE}
+spec:
+  replicas: ${REPLICAS}
+  selector:
+    matchLabels:
+      app: ${NAME}-pd
+  template:
+    metadata:
+      name: ${NAME}-pd
+      labels:
+        app: ${NAME}-pd
+    spec:
+      containers:
+      - name: ${NAME}-cntnr
+        image: ${DOCKER_IMAGE}
+        volumeMounts:
+        - name: php-data
+          mountPath: /var/www/html
+      - name: ${NAME}-nginx-cntnr
+        image: nginx:alpine
+        volumeMounts:
+        - name: php-data
+          mountPath: /var/www/html
+        - name: configs
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+        ports:
+        - name: http
+          containerPort: 80
+      volumes:
+      - name: configs
+        configMap:
+          name: ${NAME}-cnfgmp

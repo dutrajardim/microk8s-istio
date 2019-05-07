@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${NAME}-dplymnt
+  labels:
+    app: ${NAME}-dplymnt
+spec:
+  selector:
+    matchLabels:
+      app: ${NAME}-pd
+  template:
+    metadata:
+      labels:
+        app: ${NAME}-pd
+    spec:
+      containers:
+      - name: ${NAME}-cntnr
+        image: ${DOCKER_IMAGE}
+        ports:
+          - containerPort: 3306
